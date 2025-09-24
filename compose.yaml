@@ -1,10 +1,16 @@
 services:
   mysql:
     image: 'mysql:latest'
+    container_name: Mysql-VetClinic
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
+      - 'MYSQL_DATABASE=VetClinicDb'
       - 'MYSQL_PASSWORD=secret'
       - 'MYSQL_ROOT_PASSWORD=verysecret'
       - 'MYSQL_USER=myuser'
     ports:
-      - '3306'
+      - "3308:3306"
+    volumes:
+      - vet_clinic_data:/var/lib/mysql
+
+volumes:
+  vet_clinic_data:
