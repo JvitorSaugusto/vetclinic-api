@@ -1,6 +1,7 @@
 package com.jvitorsaugusto.vetclinic_api.controller;
 
-import com.jvitorsaugusto.vetclinic_api.dtos.petsDtos.PetDetailsDto;
+import com.jvitorsaugusto.vetclinic_api.dtos.petsDtos.PetUpdateDtoRequest;
+import com.jvitorsaugusto.vetclinic_api.dtos.petsDtos.PetDetailsResponseDto;
 import com.jvitorsaugusto.vetclinic_api.dtos.petsDtos.PetDto;
 import com.jvitorsaugusto.vetclinic_api.dtos.petsDtos.PetRegisterDtoResponse;
 import com.jvitorsaugusto.vetclinic_api.service.PetService;
@@ -27,12 +28,12 @@ public class PetController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<PetDetailsDto> updatePet(@PathVariable(value = "id") Long id, @RequestBody PetDetailsDto petDetailsDto){
-        return ResponseEntity.status(HttpStatus.OK).body(petService.updatePet(id, petDetailsDto));
+    public ResponseEntity<PetDetailsResponseDto> updatePet(@PathVariable(value = "id") Long id, @RequestBody PetUpdateDtoRequest petUpdateDtoRequest){
+        return ResponseEntity.status(HttpStatus.OK).body(petService.updatePet(id, petUpdateDtoRequest));
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<PetDetailsDto> detailsPet(@PathVariable(value = "id") Long id){
+    public ResponseEntity<PetDetailsResponseDto> detailsPet(@PathVariable(value = "id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(petService.findPetById(id));
     }
 
